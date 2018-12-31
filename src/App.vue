@@ -1,10 +1,6 @@
 <template>
   <div id="app">
     <button id="show-modal" @click="showFirstModal">Show Modal</button>
-    <!-- use the modal component, pass in the prop -->
-    <!-- <modal ref="modal" @toggleAlert="showAlertModalView"></modal>
-    <alert-modal ref="alertmodal" @toggleThirdModal="showThirdModal"></alert-modal>
-    <third-modal ref="thirdmodal"></third-modal>-->
     <ag-modal ref="firstAgModal">
       <template slot="header">
         <h3 class="normal">First Header</h3>
@@ -40,30 +36,23 @@
 
 <script>
 import AgModal from "./components/AgModal.vue";
-import Modal from "./components/Modal.vue";
-import AlertModal from "./components/AlertModal.vue";
-import ThirdModal from "./components/ThirdModal.vue";
+import axios from 'axios';
 
 export default {
   name: "app",
   components: {
     AgModal,
-    Modal,
-    AlertModal,
-    ThirdModal
   },
   methods: {
-    // showModalView() {
-    //   this.$refs.modal.show();
-    // },
-    // showAlertModalView() {
-    //   this.$refs.alertmodal.show();
-    // },
-    // showThirdModal() {
-    //   this.$refs.thirdmodal.show();
-    // },
     showFirstModal() {
+      var self=this;
       this.$refs.firstAgModal.show();
+      setTimeout(() => {
+        axios.get('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => {
+          this.showSecondModal();
+        })
+      }, 5000)
     },
     showSecondModal() {
       this.$refs.secondAgModal.show();

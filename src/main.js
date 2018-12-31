@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import ModalHandler from './plugin/plugin.js';
+import ModalHandler from './plugin/index';
 
 Vue.use(ModalHandler);
 
