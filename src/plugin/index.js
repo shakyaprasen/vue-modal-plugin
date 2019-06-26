@@ -37,11 +37,7 @@ const ModalHandler = {
     Vue.onModalclose = modalStackHandler(false);
 
     Vue.prototype.$modalHandler = function(component) {
-      if (component.showModal) {
-        Vue.onModalOpen(component);
-      } else {
-        Vue.onModalclose(component);
-      }
+      modalStackhandler(component.showModal)(component);
     };
   }
 };
